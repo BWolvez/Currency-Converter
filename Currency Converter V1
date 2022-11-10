@@ -1,0 +1,100 @@
+from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
+import webbrowser
+
+
+#Window Creating Code lines
+BW = Tk()
+BW.title("BlackzWolves's Currency Converter")
+BW.minsize(width=500, height=500)
+BW.configure(bg="#000000")
+BW.resizable(width=FALSE, height=FALSE)
+
+
+#Label Lines
+Label(text="Currency Converter", font=("Courier", 30)).place(x=30,y=25)
+Label(text="Insert amount of money(Baht)", font=100, bg="#292828", fg="#fe0000").place(x=150, y=100)
+Label(text="Select a currency", font=100, bg="#292828", fg="#fe0000").place(x=185, y=185)
+Label(text="Result", font=100, bg="#292828", fg="#fe0000").place(x=225, y=250)
+
+#Entry Lines
+amount_entry = Entry(font=50, width=30, justify=CENTER)
+amount_entry.place(x=115,y=125)
+result_entry = Entry(font=50, width=30, justify=CENTER)
+result_entry.place(x=115,y=275, height=80)
+
+#Combobox Lines
+C = StringVar()
+CBB = ttk.Combobox(BW, width=20 ,textvariable = C, font=50, state="readonly")
+
+CBB['values'] = ['USD (US Dollar)'
+                , 'EUR (European Euro)'
+                , 'CHF (Swiss Franc)'
+                , 'AUD (Australian Dollar)'
+                , 'GBP (Pound Sterling)']
+
+
+CBB.place(x=150, y=210)
+CBB.current(0)
+
+
+#Convert Operation Lines
+def convert():
+    result_entry.delete(0, END)
+    if CBB.get() == 'USD (US Dollar)':
+        v1 = float(amount_entry.get())
+        v2 = 37.69
+        v3 = v1 / v2
+        v4 = round(v3, 2)
+        v5 = str(v4)
+        result_entry.insert(0, v5)
+
+    elif CBB.get() == 'EUR (European Euro)':
+        v1 = float(amount_entry.get())
+        v2 = 37.4392
+        v3 = v1 / v2
+        v4 = round(v3, 2)
+        v5 = str(v4)
+        result_entry.insert(0, v5)
+
+    elif CBB.get() == 'CHF (Swiss Franc)':
+        v1 = float(amount_entry.get())
+        v2 = 37.9748
+        v3 = v1 / v2
+        v4 =round(v3, 2)
+        v5 = str(v4)
+        result_entry.insert(0, v5)
+
+    elif CBB.get() == 'AUD (Australian Dollar)':
+        v1 = float(amount_entry.get())
+        v2 = 24.302
+        v3 = v1 / v2
+        v4 =round(v3, 2)
+        v5 = str(v4)
+        result_entry.insert(0, v5)
+
+    elif CBB.get() == 'GBP (Pound Sterling)':
+        v1 = float(amount_entry.get())
+        v2 = 43.5018
+        v3 = v1 / v2
+        v4 = round(v3, 2)
+        v5 = str(v4)
+        result_entry.insert(0, v5)
+
+def gototheshadowrealm():
+    print("Ha! You're just got Rick Roll bro")
+    webbrowser.open_new(r"https://youtu.be/dQw4w9WgXcQ"), messagebox.showinfo(title="Ha! Got em", message="You have successfully Get Rick Rolled")
+
+
+def clear():
+    amount_entry.delete(0, END)
+    result_entry.delete(0, END)
+    messagebox.showinfo(title="Successful", message="You have successfully cleared")
+
+#Button
+Button(text="Convert", fg="#fe0000", bg="#383838", width=20, height=5, font=50, command=convert).place(x=155, y=370)
+Button(text="Clear", fg="#fe0000", bg="#383838", font=50, command=clear).place(x=155, y=370)
+Button(text="Click here", fg="#fe0000", bg="black", command=gototheshadowrealm).place(x=438, y=475)
+
+BW.mainloop()

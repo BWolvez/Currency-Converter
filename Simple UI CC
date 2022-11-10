@@ -1,0 +1,65 @@
+from tkinter import *
+from tkinter import ttk
+
+
+ชื่อเล่น = Tk()
+ชื่อเล่น.title("เครื่องแปลงค่าเงิน")
+ชื่อเล่น.minsize(width=500, height=500)
+
+
+Label(text="กรุณาใส่จำนวนเงิน(บาท)").place(x=200, y=100)
+Label(text="กรุณาเลือกค่าเงิน").place(x=215, y=170)
+Label(text="ค่าเงินที่แปลงแล้ว").place(x=216, y=268)
+
+ช่องกรอกค่าเงิน = Entry(font=50, width=30, justify=CENTER)
+ช่องกรอกค่าเงิน.place(x=115,y=125)
+ผลลัพธ์ = Entry(font=50, width=30, justify=CENTER)
+ผลลัพธ์.place(x=115,y=245)
+
+Z = StringVar()
+ZZZ = ttk.Combobox(ชื่อเล่น, width=15 ,textvariable = Z, font=50)
+
+ZZZ['values'] = ['USD ดอลล่าห์สหรัฐ', 'EUR ยูโร', 'CHF ฟรังค์', 'AUD ดอลล่าห์ออสเตรเลีย', 'GBP ปอนด์']
+
+
+ZZZ.place(x=179, y=200)
+ZZZ.current(0)
+
+
+def convert():
+    ผลลัพธ์.delete(0, END)
+    if ZZZ.get() == 'USD ดอลล่าห์สหรัฐ':
+        v1 = float(ช่องกรอกค่าเงิน.get()) / 37.69
+        v2 = str(round(v1, 2))
+        ผลลัพธ์.insert(0, v2)
+
+    elif ZZZ.get() == 'EUR ยูโร':
+        v1 = float(ช่องกรอกค่าเงิน.get()) / 37.492
+        v2 = str(round(v1, 2))
+        ผลลัพธ์.insert(0, v2)
+
+    elif ZZZ.get() == 'CHF ฟรังค์':
+        v1 = float(ช่องกรอกค่าเงิน.get()) / 37.9748
+        v2 = str(round(v1, 2))
+        ผลลัพธ์.insert(0, v2)
+
+    elif ZZZ.get() == 'AUD ดอลล่าห์ออสเตรเลีย':
+        v1 = float(ช่องกรอกค่าเงิน.get()) / 24.302
+        v2 = str(round(v1, 2))
+        ผลลัพธ์.insert(0, v2)
+
+    elif ZZZ.get() == 'GBP ปอนด์':
+        v1 = float(ช่องกรอกค่าเงิน.get()) / 43.5018
+        v2 = str(round(v1, 2))
+        ผลลัพธ์.insert(0, v2)
+
+
+
+def clear():
+    ช่องกรอกค่าเงิน.delete(0, END)
+    ผลลัพธ์.delete(0, END)
+
+Button(text="แปลงค่า", font=50, command=convert).place(x=115, y=280)
+Button(text="เคลียร์", font=50, command=clear).place(x=338, y=280)
+
+ชื่อเล่น.mainloop()
